@@ -9,11 +9,11 @@
 ###1.	Launch the Virtual Machine- Followed the steps as mentioned in the Udacity account.###
 *	Downloaded private key
 *	Moved the private key file into the folder ~/.ssh –
-mv ~/Downloads/udacity_key.rsa ~/.ssh/
+`mv ~/Downloads/udacity_key.rsa ~/.ssh/`
 *	Changed permissions on the key – 
-chmod 600 ~/.ssh/udacity_key.rsa
+`chmod 600 ~/.ssh/udacity_key.rsa`
 *	ssh’d into the VM – 
-ssh -i ~/.ssh/udacity_key.rsa root@<Public-IP-Address>
+`ssh -i ~/.ssh/udacity_key.rsa root@<Public-IP-Address>`
 
 ###2.	Create a new user named grader###
 *	Create a new user grader – 
