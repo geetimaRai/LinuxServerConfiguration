@@ -89,7 +89,7 @@ sudo service ssh reload
 ~~~~
 ssh-keygen
 ~~~~
-*	Save keygen file in the ssh directory at location Users/<Username>/.ssh/project5
+*	Save keygen file in the ssh directory at location Users/< Username >/.ssh/project5
 *	Login with grader account using password set during user creation –
 ~~~~
 ssh -v grader@< Public-IP-Address > -p 2200
