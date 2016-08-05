@@ -1,8 +1,8 @@
 ##Linux Server Configuration Project##
 
-####Public IP Address:#### 52.42.97.13 
-####Project Browse Link:#### http://ec2-52-42-97-13.us-west-2.compute.amazonaws.com/
-####SSH Port:#### 2200
+Public IP Address: 52.42.97.13 
+Project Browse Link: http://ec2-52-42-97-13.us-west-2.compute.amazonaws.com/
+SSH Port: 2200
 
 ##List of tasks and steps to accomplish the task:##
 
@@ -39,8 +39,8 @@
 
 ###4. Update all currently installed packages###
 *	Run the following commands from the prompt –
-`sudo apt-get update
-sudo apt-get upgrade`
+```sudo apt-get update
+sudo apt-get upgrade```
 
 ###5. Change the SSH port from 22 to 2200###
 *	Open sshd_config file –
@@ -68,8 +68,8 @@ PasswordAuthentication no to PasswordAuthentication yes. (Will be changed back o
 *	Copy the contents of the file .ssh/project5.pub on your local machine
 *	On your VM, paste the above in .ssh/authorized_keys paste contents
 *	Set permissions for files –
-`chmod 700 .ssh 
-chmod 644 .ssh/authorized_keys`
+```chmod 700 .ssh 
+chmod 644 .ssh/authorized_keys```
 *	Open sshd_config file –
 `sudo vim /etc/ssh/sshd_config`
 *	Change PasswordAuthentication from yes back to no. (enter grader password when asked for grader password)
@@ -105,7 +105,7 @@ chmod 644 .ssh/authorized_keys`
 `sudo vim /etc/hosts`
 *	Install apache2 –
 `sudo apt-get install apache2`
-*	Visit the ip address and make sure it works.
+*	Visit the ip address and make sure it works –
 `http://<Public-IP-Address>`
 *	Install mod_wsgi –
 `sudo apt-get install libapache2-mod-wsgi`
@@ -150,17 +150,17 @@ chmod 644 .ssh/authorized_keys`
 *	Install git –
 `sudo apt-get install git`
 *	Create keypair to fetch the remote repository and save in /home/grader/.ssh/github –
-`ssh-keygen -t rsa -b 4096 -C "github catalog"  
+```ssh-keygen -t rsa -b 4096 -C "github catalog"  
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/github`
+ssh-add ~/.ssh/github```
 *	Copy the contents of /home/grader/.ssh/github.pub
 *	Go to your github account,find settings, and add the ssh key
 *	Clone the project –
 `git clone git@github.com:geetimaRai/catalog.git`
 *	Change directory and create new directory catalog –
-`cd /var/www/
+```cd /var/www/
 mkdir catalog
-cd catalog`
+cd catalog```
 *	Move the catalog project to the current directory
 `mv ~/catalog .`
 *	Install python-dev package –
@@ -168,16 +168,16 @@ cd catalog`
 *	Verify wsgi is enabled –
 `sudo a2enmod wsgi`
 *	Change to catalog directory and create a new file __init__.py –
-`cd /var/www/catalog/catalog
-sudo vim __init__.py`
+```cd /var/www/catalog/catalog
+sudo vim __init__.py```
 *	Add the following to the file __init__.py
-`from flask import Flask
+```from flask import Flask
 app = Flask(__name__)
 @app.route("/")
 def hello():
 	return "Hello, World!
 if __name__ == "__main__":
-	app.run()`
+	app.run()```
 *	Open database_setup.py
 `sudo vim database_setup.py`
 *	Remove the  line with engine initialization and add the following line:
@@ -186,19 +186,19 @@ if __name__ == "__main__":
 *	Copy the application.py file into the __init__.py file –
 `mv appliation.py __init__.py`
 *	Install flask and other dependencies with permission changes –
-`sudo apt-get install python-pip
+```sudo apt-get install python-pip
 sudo pip install virtualenv
 sudo virtualenv env
 sudo chmod -R 777 env
 source env/bin/activate
 pip install Flask
 python __init__.py
-deactivate`
+deactivate```
 *	Configure And Enable New Virtual Host
 *	Create host config file –
 `sudo vim /etc/apache2/sites-available/catalog.conf`
 *	Add the following:
-`<VirtualHost *:80>
+```<VirtualHost *:80>
   ServerName 52.42.97.13
   ServerAdmin admin@52.42.97.13
  ScriptAlias / /var/www/catalog/catalogapp.wsgi
@@ -214,21 +214,21 @@ deactivate`
   ErrorLog ${APACHE_LOG_DIR}/error.log
   LogLevel warn
   CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>`
+</VirtualHost>```
 
 *	Enable catalog –
 `sudo a2ensite catalog`
 *	Create the wsgi file –
 `sudo vim /var/www/catalog/catalogapp.wsgi`
 *	Add the following –
-`#!/usr/bin/python
+```#!/usr/bin/python
 import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0,"/var/www/catalog/")
 
 from catalog import app as application
-application.secret_key = 'Add your secret key'`
+application.secret_key = 'Add your secret key'```
 
 *	Restart apache server –
 `sudo service apache2 restart`
