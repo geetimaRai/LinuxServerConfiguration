@@ -20,8 +20,10 @@ SSH Port: 2200
 `sudo adduser grader`
 *	Enter a password and name as grader
 *	To confirm that the user was created successfully, install finger and confirm -
-```apt-get install finger
-finger grader```
+~~~~
+apt-get install finger
+finger grader
+~~~~
 
 ###3.	Give the grader the permission to sudo###
 *	Enter the command below to open the file – 
