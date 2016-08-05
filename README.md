@@ -1,23 +1,31 @@
 ##Linux Server Configuration Project##
 
-Public IP Address: 52.42.97.13 
-Project Browse Link: http://ec2-52-42-97-13.us-west-2.compute.amazonaws.com/
-SSH Port: 2200
+* Public IP Address: 52.42.97.13 
+* Project Browse Link: http://ec2-52-42-97-13.us-west-2.compute.amazonaws.com/
+* SSH Port: 2200
 
 ##List of tasks and steps to accomplish the task:##
 
 ###1.	Launch the Virtual Machine- Follow the steps as mentioned in the Udacity account.###
 *	Download the private key
 *	Move the private key file into the folder ~/.ssh –
-`mv ~/Downloads/udacity_key.rsa ~/.ssh/`
+~~~~
+mv ~/Downloads/udacity_key.rsa ~/.ssh/
+~~~~
 *	Change permissions on the key – 
-`chmod 600 ~/.ssh/udacity_key.rsa`
+~~~~
+chmod 600 ~/.ssh/udacity_key.rsa
+~~~~
 *	ssh into the VM – 
-`ssh -i ~/.ssh/udacity_key.rsa root@<Public-IP-Address>`
+~~~~
+ssh -i ~/.ssh/udacity_key.rsa root@<Public-IP-Address>
+~~~~
 
 ###2.	Create a new user named grader###
 *	Create a new user grader – 
-`sudo adduser grader`
+~~~~
+sudo adduser grader
+~~~~
 *	Enter a password and name as grader
 *	To confirm that the user was created successfully, install finger and confirm -
 ~~~~
@@ -27,7 +35,8 @@ finger grader
 
 ###3.	Give the grader the permission to sudo###
 *	Enter the command below to open the file – 
-`sudo visudo`
+~~~~
+sudo visudo~~~~
 *	Add the following line below the root user in User privilege specification –
 `grader ALL=(ALL:ALL) ALL`
 *	Create file grader in /etc/sudoers.d – 
