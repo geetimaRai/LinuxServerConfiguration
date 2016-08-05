@@ -292,7 +292,8 @@ cd /var/www/catalog/catalog
 sudo vim __init__.py
 ~~~~
 *	Add the following to the file __init__.py
-~~~~from flask import Flask
+~~~~{.python}
+from flask import Flask
 app = Flask(__name__)
 @app.route("/")
 def hello():
