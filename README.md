@@ -20,8 +20,8 @@ SSH Port: 2200
 `sudo adduser grader`
 *	Enter a password and name as grader
 *	To confirm that the user was created successfully, install finger and confirm -
-`apt-get install finger`
-`finger grader`
+```apt-get install finger
+finger grader```
 
 ###3.	Give the grader the permission to sudo###
 *	Enter the command below to open the file – 
@@ -152,7 +152,8 @@ chmod 644 .ssh/authorized_keys```
 *	Create keypair to fetch the remote repository and save in /home/grader/.ssh/github –
 ```ssh-keygen -t rsa -b 4096 -C "github catalog"  
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/github```
+ssh-add ~/.ssh/github
+```
 *	Copy the contents of /home/grader/.ssh/github.pub
 *	Go to your github account,find settings, and add the ssh key
 *	Clone the project –
